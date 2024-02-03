@@ -3,13 +3,11 @@
 --Maximilian Klimko
 --Daniel Zaher El Deen
 
-
 -- A. How much does the most expensive equipment cost? Return only the price.
 -- Explanation: 250.000isk
 
 SELECT max(price)
 FROM equipment;
-
 
 -- B. 792 members have started the gym in April (of any year). How many members have started the gym in January (of any year)?
 -- Explanation: 899
@@ -61,7 +59,6 @@ WHERE M.id NOT IN (
     FROM attends A)
 AND M.iid IS NULL;
 
-
 -- G. 43 instructors have led 15 or more classes. How many instructors have led 10 or more classes?
 -- Explanation: 66
 
@@ -87,12 +84,40 @@ WHERE M1.quit_date IS NOT NULL
 ANd M1.id != M2.id
   
 
-
 --I. How many classes were held in gyms in Reykjavik and have a capacity of either 30 or 40 people, but the capacity was not used fully?
--- Explanation: 
+-- Explanation: 216
 
+WITH RVKgymtable (ClassID, capacity)
+AS(
+    SELECT C.id, T.capacity
+    FROM class C
+    JOIN type T ON T.id = C.tid
+    WHERE (C.gid = 2 OR C.gid = 4)
+    AND (T.capacity = 30 OR T.capacity = 40)
+    )
 
+SELECT count(*)
+FROM (
+    SELECT count(A.mid), A.cid
+    FROM RVKgymtable R
+    JOIN attends A ON A.cid = R.ClassID
+    GROUP BY A.cid, R.capacity 
+    HAVING count(A.mid) < R.capacity
+    )
 
 -- J. Return the ID and name of the member(s) that attended classes for the longest total time (in minutes) of all members?
 -- Explanation: 
+
+WITH temp_table(name, id, total_minutes)
+AS(
+    SELECT M.name, A.mid, sum(C.minutes) as total_minutes
+    FROM Attends A
+    join Member M on A.mid = M.id
+    join Class C on C.id = A.cid 
+    GROUP BY A.mid, M.name
+    ORDER BY total_minutes DESC
+)
+SELECT name, id, total_minutes
+FROM temp_table
+where total_minutes = (SELECT max(total_minutes) FROM temp_table)
 
