@@ -1,0 +1,69 @@
+  max   
+--------
+ 250000
+(1 row)
+
+ count 
+-------
+   899
+(1 row)
+
+ count 
+-------
+   292
+(1 row)
+
+ count 
+-------
+    52
+(1 row)
+
+       name        | Average Rating 
+-------------------+----------------
+ Rowing Class      |              9
+ Circuit Training  |              8
+ Spinning          |              8
+ Body Combat       |              8
+ Yoga              |              7
+ Strength Training |              7
+ HIIT              |              7
+ Hot Fit           |              7
+ Running           |              7
+ Step Aerobics     |              7
+ Crossfit          |              7
+ Barre Burn        |              7
+ Infrared Hot Fit  |              7
+ Dance Fitness     |              7
+ Kickboxing        |              5
+ Foam & Flex       |              5
+ Pilates           |              5
+ Trampoline Burn   |              5
+ Body Pump         |              5
+ Zumba             |              4
+(20 rows)
+
+ count 
+-------
+  6086
+(1 row)
+
+ count 
+-------
+    66
+(1 row)
+
+ count 
+-------
+     8
+(1 row)
+
+ count 
+-------
+   216
+(1 row)
+
+          name           |  id  | total_minutes 
+-------------------------+------+---------------
+ Baldvin Snaer Bjarnason | 1542 |          9135
+(1 row)
+
